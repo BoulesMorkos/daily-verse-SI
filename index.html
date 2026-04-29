@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Verse of the Day — Archangel Michael & St. Mena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=IM+Fell+English:ital@0;1&family=Nunito:wght@500;700;800&family=Amiri:ital@0;1&family=Tajawal:wght@500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --crimson: #b81c34;
+      --crimson-dk: #8a1225;
+      --gold: #d4920a;
+      --gold-lt: #f5c842;
+      --sky: #1a6fc4;
+      --sky-lt: #4da3ff;
+      --bg: #fff8f0;
+      --card: #ffffff;
+      --txt: #1a0a05;
+      --txt2: #4a2010;
+      --muted: #a08060;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100dvh;
+      background:
+        linear-gradient(180deg,
+          #ffe8cc 0%,
+          #fff4e0 30%,
+          #fff8f0 60%,
+          #ffeedd 100%);
+      font-family: 'Nunito', sans-serif;
+      color: var(--txt);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 60px;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero Banner ─────────────────────────── */
+    .hero {
+      width: 100%;
+      background: linear-gradient(135deg, #8a1225 0%, #b81c34 45%, #c8401a 100%);
+      padding: 36px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(184,28,52,0.35);
+    }
+    /* Decorative rays */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-conic-gradient(
+        rgba(255,255,255,0.04) 0deg 10deg,
+        transparent 10deg 20deg
+      );
+      pointer-events: none;
+    }
+    /* Gold line top */
+    .hero::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-lt), var(--gold), var(--gold-lt), transparent);
+    }
+
+    /* Coptic Cross SVG */
+    .hero-cross { animation: pulse-glow 3s ease-in-out infinite; }
+    @keyframes pulse-glow {
+      0%,100% { filter: drop-shadow(0 0 6px rgba(245,200,66,0.6)); }
+      50%      { filter: drop-shadow(0 0 18px rgba(245,200,66,1)); }
+    }
+
+    .church-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.88rem, 3.8vw, 1.1rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+      line-height: 1.5;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .church-location {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 2.5px;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+    }
+    .youth-badge {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      border-radius: 20px;
+      padding: 5px 22px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #5a1800;
+      box-shadow: 0 3px 12px rgba(212,146,10,0.5);
+      margin-top: 2px;
+    }
+
+    /* ── Page content ────────────────────────── */
+    .page {
+      width: 100%; max-width: 430px;
+      padding: 24px 18px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* Date chip */
+    .date-chip {
+      background: linear-gradient(135deg, var(--crimson), #e03a20);
+      border-radius: 20px;
+      padding: 7px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(184,28,52,0.3);
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    /* ── Verse Card ───────────────────────────── */
+    .card {
+      width: 100%;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 28px 24px 24px;
+      text-align: center;
+      box-shadow:
+        0 10px 40px rgba(184,28,52,0.12),
+        0 2px 8px rgba(0,0,0,0.08);
+      border: 1.5px solid rgba(212,146,10,0.2);
+      animation: fadeUp 0.7s 0.15s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Top accent line on card */
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold), var(--sky));
+      border-radius: 24px 24px 0 0;
+    }
+
+    .card-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 14px;
+      margin-top: 4px;
+    }
+
+    .verse-ref {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--crimson-dk);
+      margin-bottom: 14px;
+    }
+
+    /* Ornament */
+    .ornament {
+      display: flex; align-items: center; gap: 10px;
+      margin: 0 auto 18px;
+    }
+    .orn-line {
+      flex: 1; height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(212,146,10,0.5));
+    }
+    .orn-line.r { background: linear-gradient(90deg, rgba(212,146,10,0.5), transparent); }
+    .orn-dot { color: var(--gold); font-size: 0.65rem; }
+
+    /* English verse */
+    .verse-en {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 3.8vw, 1.18rem);
+      line-height: 1.9;
+      color: #2a1408;
+      margin-bottom: 20px;
+    }
+
+    /* Arabic separator */
+    .lang-sep {
+      display: flex; align-items: center; gap: 10px;
+      margin: 0 auto 18px;
+    }
+    .lang-sep-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(26,111,196,0.3));
+    }
+    .lang-sep-line.r { background: linear-gradient(90deg, rgba(26,111,196,0.3), transparent); }
+    .lang-sep-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sky);
+      opacity: 0.7;
+    }
+
+    /* Arabic verse */
+    .verse-ar {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.12rem, 4vw, 1.28rem);
+      line-height: 2.1;
+      color: #1a0a2e;
+      direction: rtl;
+      text-align: right;
+      font-style: italic;
+    }
+
+    /* Loader */
+    .loader { display:flex; gap:8px; justify-content:center; align-items:center; min-height:60px; }
+    .loader span {
+      width:9px; height:9px; border-radius:50%;
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+    .loader span:nth-child(1){ background:var(--crimson); }
+    .loader span:nth-child(2){ background:var(--gold); animation-delay:0.2s; }
+    .loader span:nth-child(3){ background:var(--sky); animation-delay:0.4s; }
+    @keyframes bounce {
+      0%,100%{ transform:scale(0.6); opacity:0.3; }
+      50%    { transform:scale(1.3); opacity:1; }
+    }
+
+    /* ── Progress & Actions ──────────────────── */
+    .bottom {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 14px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .progress-row { width:100%; display:flex; flex-direction:column; gap:6px; }
+    .progress-labels {
+      display:flex; justify-content:space-between;
+      font-size:0.7rem; color:var(--muted); font-weight:700;
+    }
+    .progress-track {
+      width:100%; height:6px;
+      background:rgba(0,0,0,0.08); border-radius:3px; overflow:hidden;
+    }
+    .progress-fill {
+      height:100%;
+      background: linear-gradient(90deg, var(--crimson), var(--gold), var(--sky-lt));
+      border-radius:3px; transition:width 1.2s ease;
+    }
+
+    .btn-row {
+      display: flex; gap: 12px; width: 100%;
+    }
+
+    .share-btn {
+      background: linear-gradient(135deg, var(--sky) 0%, var(--sky-lt) 100%);
+      border: none; border-radius: 16px;
+      padding: 15px 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem; font-weight: 800;
+      color: #fff; cursor: pointer;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 20px rgba(26,111,196,0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+      flex: 1;
+    }
+    .share-btn:active { transform:scale(0.97); box-shadow:0 3px 10px rgba(26,111,196,0.2); }
+
+    .download-btn {
+      background: linear-gradient(135deg, var(--crimson-dk) 0%, var(--crimson) 100%);
+      border: none; border-radius: 16px;
+      padding: 15px 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.92rem; font-weight: 800;
+      color: #fff; cursor: pointer;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 20px rgba(184,28,52,0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .download-btn:active { transform:scale(0.97); box-shadow:0 3px 10px rgba(184,28,52,0.2); }
+    .download-btn.loading { opacity: 0.7; pointer-events: none; }
+
+    /* ── Footer ──────────────────────────────── */
+    .footer {
+      margin-top: 4px;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.8px;
+      text-align: center;
+      line-height: 1.8;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .footer-cross { font-size:1rem; color: var(--gold); display:block; margin-bottom:3px; }
+  </style>
+</head>
+<body>
+
+<!-- ── Hero ───────────────────────────────────── -->
+<div class="hero">
+  <svg class="hero-cross" width="56" height="66" viewBox="0 0 56 66" fill="none">
+    <circle cx="28" cy="11" r="10" stroke="#f5c842" stroke-width="3" fill="none"/>
+    <circle cx="28" cy="11" r="5" fill="#8a1225"/>
+    <rect x="25" y="3"  width="6" height="7"  rx="1.5" fill="#f5c842"/>
+    <rect x="25" y="20" width="6" height="46" rx="2"   fill="#f5c842"/>
+    <rect x="4"  y="29" width="48" height="8" rx="2"   fill="#f5c842"/>
+  </svg>
+  <div class="church-name">Archangel Michael &amp; St. Mena<br/>Coptic Orthodox Church</div>
+  <div class="church-location">Staten Island · New York</div>
+  <div class="youth-badge">✦ Youth Meeting ✦</div>
+</div>
+
+<!-- ── Content ───────────────────────────────── -->
+<div class="page">
+
+  <div class="date-chip" id="dateChip">…</div>
+
+  <div class="card">
+    <div class="card-label">✦ Verse of the Day · آية اليوم ✦</div>
+
+    <div class="verse-ref" id="verseRef">&nbsp;</div>
+
+    <div class="ornament">
+      <div class="orn-line"></div>
+      <span class="orn-dot">✦</span>
+      <div class="orn-line r"></div>
+    </div>
+
+    <div id="verseContent">
+      <div class="loader"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="progress-row">
+      <div class="progress-labels">
+        <span>Day <span id="dayNum">—</span> / 365</span>
+        <span id="pct">—%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressBar" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="share-btn" onclick="shareVerse()">✦ Share · شارك</button>
+      <button class="download-btn" id="dlBtn" onclick="downloadImage()">
+        <span id="dlIcon">⬇</span> <span id="dlLabel">Save Image</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-cross">☩</span>
+    NKJV / الكتاب المقدس · Scan your bracelet daily<br/>
+    Archangel Michael &amp; St. Mena · Staten Island, NY
+  </div>
+
+</div>
+
+<script>
+// [ref, english, arabic]
+const VERSES = [
+  ["Genesis 1:1","In the beginning God created the heavens and the earth.","فِي الْبَدْءِ خَلَقَ اللهُ السَّمَاوَاتِ وَالأَرْضَ."],
+  ["Genesis 1:27","So God created man in His own image; in the image of God He created him.","فَخَلَقَ اللهُ الإِنْسَانَ عَلَى صُورَتِهِ، عَلَى صُورَةِ اللهِ خَلَقَهُ."],
+  ["Genesis 6:8","But Noah found grace in the eyes of the Lord.","وَأَمَّا نُوحٌ فَوَجَدَ نِعْمَةً فِي عَيْنَيِ الرَّبِّ."],
+  ["Genesis 12:2","I will make you a great nation; I will bless you and make your name great; and you shall be a blessing.","فَأَجْعَلَكَ أُمَّةً عَظِيمَةً، وَأُبَارِكَكَ وَأُعَظِّمَ اسْمَكَ، وَتَكُونُ بَرَكَةً."],
+  ["Genesis 15:1","Do not be afraid, Abram. I am your shield, your exceedingly great reward.","لاَ تَخَفْ يَا أَبْرَامُ. أَنَا تُرْسٌ لَكَ. أَجْرُكَ كَثِيرٌ جِدًّا."],
+  ["Genesis 28:15","Behold, I am with you and will keep you wherever you go.","هَا أَنَا مَعَكَ وَأَحْفَظُكَ حَيْثُمَا تَذْهَبُ."],
+  ["Genesis 50:20","You meant evil against me; but God meant it for good.","أَنْتُمْ قَصَدْتُمْ لِي شَرًّا، أَمَّا اللهُ فَقَصَدَ بِهِ خَيْرًا."],
+  ["Exodus 3:14","God said to Moses, I AM WHO I AM.","قَالَ اللهُ لِمُوسَى: أَنَا الَّذِي أَنَا."],
+  ["Exodus 14:14","The Lord will fight for you, and you shall hold your peace.","اَلرَّبُّ يُحَارِبُ عَنْكُمْ، وَأَنْتُمْ تَصْمُتُونَ."],
+  ["Exodus 33:14","My Presence will go with you, and I will give you rest.","وَجْهِي يَسِيرُ مَعَكَ وَأُرِيحُكَ."],
+  ["Leviticus 19:18","You shall love your neighbor as yourself: I am the Lord.","تُحِبُّ قَرِيبَكَ كَنَفْسِكَ: أَنَا الرَّبُّ."],
+  ["Numbers 6:24","The Lord bless you and keep you.","يُبَارِكَكَ الرَّبُّ وَيَحْفَظَكَ."],
+  ["Numbers 6:25","The Lord make His face shine upon you, and be gracious to you.","يُضِيءُ الرَّبُّ بِوَجْهِهِ عَلَيْكَ وَيَتَرَاءَفَ عَلَيْكَ."],
+  ["Numbers 6:26","The Lord lift up His countenance upon you, and give you peace.","يَرْفَعُ الرَّبُّ وَجْهَهُ نَحْوَكَ وَيَضَعُ لَكَ سَلاَمًا."],
+  ["Deuteronomy 6:5","You shall love the Lord your God with all your heart, with all your soul, and with all your strength.","فَتُحِبُّ الرَّبَّ إِلَهَكَ مِنْ كُلِّ قَلْبِكَ وَمِنْ كُلِّ نَفْسِكَ وَمِنْ كُلِّ قُوَّتِكَ."],
+  ["Deuteronomy 8:3","Man shall not live by bread alone; but man lives by every word that proceeds from the mouth of the Lord.","لَيْسَ بِالْخُبْزِ وَحْدَهُ يَحْيَا الإِنْسَانُ، بَلْ بِكُلِّ مَا يَخْرُجُ مِنْ فَمِ اللهِ يَحْيَا الإِنْسَانُ."],
+  ["Deuteronomy 31:6","Be strong and of good courage; do not be afraid nor be dismayed, for the Lord your God, He is the One who goes with you.","تَشَدَّدُوا وَتَقَوَّوْا. لاَ تَخَافُوا وَلاَ تَرْهَبُوا، لأَنَّ الرَّبَّ إِلَهَكَ هُوَ السَّائِرُ مَعَكَ."],
+  ["Deuteronomy 31:8","He is the One who goes before you. He will be with you, He will not leave you nor forsake you.","وَالرَّبُّ هُوَ السَّائِرُ أَمَامَكَ. هُوَ يَكُونُ مَعَكَ وَلاَ يُهْمِلُكَ وَلاَ يَتْرُكُكَ."],
+  ["Deuteronomy 33:27","The eternal God is your refuge, and underneath are the everlasting arms.","مَسْكَنٌ اللهُ الْقَدِيمُ، وَمِنْ تَحْتُ أَذْرُعٌ أَبَدِيَّةٌ."],
+  ["Joshua 1:7","Be strong and very courageous, that you may observe to do according to all the law.","فَقَطْ تَشَدَّدْ وَكُنْ شُجَاعًا جِدًّا لِتَتَّقِيَ وَتَعْمَلَ بِحَسَبِ جَمِيعِ الشَّرِيعَةِ."],
+  ["Joshua 1:8","This Book of the Law shall not depart from your mouth, but you shall meditate in it day and night.","لاَ يَبْرَحْ سِفْرُ هَذِهِ الشَّرِيعَةِ مِنْ فَمِكَ، بَلْ تَتَلُو فِيهِ نَهَارًا وَلَيْلًا."],
+  ["Joshua 1:9","Be strong and of good courage; do not be afraid, nor be dismayed, for the Lord your God is with you wherever you go.","أَلَمْ آمُرْكَ؟ تَشَدَّدْ وَتَشَجَّعْ. لاَ تَرْهَبْ وَلاَ تَنْخَعِ، لأَنَّ الرَّبَّ إِلَهَكَ مَعَكَ حَيْثُمَا تَذْهَبُ."],
+  ["Joshua 24:15","As for me and my house, we will serve the Lord.","أَمَّا أَنَا وَبَيْتِي فَنَحْنُ نَعْبُدُ الرَّبَّ."],
+  ["Ruth 1:16","Wherever you go, I will go; your people shall be my people, and your God, my God.","حَيْثُمَا ذَهَبْتِ أَذْهَبُ، وَشَعْبُكِ شَعْبِي وَإِلَهُكِ إِلَهِي."],
+  ["1 Samuel 16:7","Man looks at the outward appearance, but the Lord looks at the heart.","الإِنْسَانُ يَنْظُرُ إِلَى الْعَيْنَيْنِ وَلَكِنَّ الرَّبَّ يَنْظُرُ إِلَى الْقَلْبِ."],
+  ["2 Samuel 22:2","The Lord is my rock and my fortress and my deliverer.","الرَّبُّ صَخْرَتِي وَحِصْنِي وَمُنَجِّذِي."],
+  ["1 Chronicles 16:34","Oh, give thanks to the Lord, for He is good! For His mercy endures forever.","احْمَدُوا الرَّبَّ لأَنَّهُ صَالِحٌ، لأَنَّ إِلَى الأَبَدِ رَحْمَتَهُ."],
+  ["2 Chronicles 7:14","If My people who are called by My name will humble themselves, and pray and seek My face, then I will hear from heaven.","إِنْ تَوَاضَعَ شَعْبِي الَّذِينَ دُعِيَ اسْمِي عَلَيْهِمْ وَصَلَّوْا وَطَلَبُوا وَجْهِي، فَإِنِّي أَسْمَعُ مِنَ السَّمَاءِ."],
+  ["2 Chronicles 20:15","The battle is not yours, but God's.","لَيْسَ لَكُمُ الْقِتَالُ. هُوَ للهِ."],
+  ["Nehemiah 8:10","The joy of the Lord is your strength.","فَرَحُ الرَّبِّ هُوَ قُوَّتُكُمْ."],
+  ["Esther 4:14","Who knows whether you have come to the kingdom for such a time as this?","مَنْ يَعْلَمُ إِنْ كُنْتِ لِوَقْتٍ كَهَذَا وَصَلْتِ إِلَى الْمَمْلَكَةِ؟"],
+  ["Job 1:21","The Lord gave, and the Lord has taken away; blessed be the name of the Lord.","الرَّبُّ أَعْطَى وَالرَّبُّ أَخَذَ. لِيَكُنِ اسْمُ الرَّبِّ مُبَارَكًا."],
+  ["Job 19:25","For I know that my Redeemer lives, and He shall stand at last on the earth.","أَنَا عَالِمٌ أَنَّ وَلِيِّيَ حَيٌّ، وَأَنَّهُ فِي مَا بَعْدُ يَقُومُ عَلَى التُّرَابِ."],
+  ["Job 42:2","I know that You can do everything, and that no purpose of Yours can be withheld from You.","قَدْ عَلِمْتُ أَنَّكَ تَقْدِرُ عَلَى كُلِّ شَيْءٍ، وَأَنَّهُ لاَ يَعْسُرُ عَلَيْكَ أَمْرٌ."],
+  ["Psalm 1:1","Blessed is the man who walks not in the counsel of the ungodly.","طُوبَى لِلرَّجُلِ الَّذِي لَمْ يَسْلُكْ فِي مَشُورَةِ الأَشْرَارِ."],
+  ["Psalm 8:1","O Lord, our Lord, how excellent is Your name in all the earth!","يَا رَبَّنَا كَمْ هُوَ جَلِيلٌ اسْمُكَ فِي كُلِّ الأَرْضِ!"],
+  ["Psalm 16:11","In Your presence is fullness of joy; at Your right hand are pleasures forevermore.","فِي حَضْرَتِكَ شِبَعٌ مِنَ السُّرُورِ. فِي يَمِينِكَ نَعِيمٌ إِلَى الأَبَدِ."],
+  ["Psalm 19:14","Let the words of my mouth and the meditation of my heart be acceptable in Your sight, O Lord.","لِتَكُنْ أَقْوَالُ فَمِي وَتَأَمُّلُ قَلْبِي مَرْضِيًّا أَمَامَكَ يَا رَبُّ."],
+  ["Psalm 23:1","The Lord is my shepherd; I shall not want.","اَلرَّبُّ رَاعِيَّ فَلاَ يُعْوِزُنِي شَيْءٌ."],
+  ["Psalm 23:2","He makes me to lie down in green pastures; He leads me beside the still waters. He restores my soul.","فِي مَرَاعٍ خَضْرَاءَ يُرْبِضُنِي. إِلَى مِيَاهِ الرَّاحَةِ يَسُوقُنِي. يَرُدُّ نَفْسِي."],
+  ["Psalm 23:4","Yea, though I walk through the valley of the shadow of death, I will fear no evil; for You are with me.","حَتَّى لَوْ سَلَكْتُ فِي وَادِي ظِلِّ الْمَوْتِ لاَ أَخَافُ شَرًّا لأَنَّكَ أَنْتَ مَعِي."],
+  ["Psalm 23:6","Surely goodness and mercy shall follow me all the days of my life.","الْخَيْرُ وَالرَّحْمَةُ كِلاَهُمَا يَتْبَعَانِنِي كُلَّ أَيَّامِ حَيَاتِي."],
+  ["Psalm 27:1","The Lord is my light and my salvation; whom shall I fear?","اَلرَّبُّ نُورِي وَخَلاَصِي، مَنْ أَخَافُ؟"],
+  ["Psalm 27:14","Wait on the Lord; be of good courage, and He shall strengthen your heart.","اِنْتَظِرِ الرَّبَّ. تَشَدَّدْ وَلْيَتَقَوَّ قَلْبُكَ. نَعَمِ انْتَظِرِ الرَّبَّ."],
+  ["Psalm 30:5","Weeping may endure for a night, but joy comes in the morning.","إِنَّمَا فِي مَسَاءِ الْبُكَاءُ وَفِي الصَّبَاحِ التَّرَنُّمُ."],
+  ["Psalm 34:8","Oh, taste and see that the Lord is good; blessed is the man who trusts in Him!","ذُوقُوا وَانْظُرُوا مَا أَطْيَبَ الرَّبَّ! طُوبَى لِلإِنْسَانِ الْمُتَّكِلِ عَلَيْهِ."],
+  ["Psalm 34:18","The Lord is near to those who have a broken heart, and saves such as have a contrite spirit.","اَلرَّبُّ قَرِيبٌ مِنَ الْقُلُوبِ الْمُنْكَسِرَةِ، وَيُخَلِّصُ الْمُنْسَحِقِي الرُّوحِ."],
+  ["Psalm 37:4","Delight yourself also in the Lord, and He shall give you the desires of your heart.","تَلَذَّذْ أَيْضًا بِالرَّبِّ فَيُعْطِيَكَ سُؤْلَ قَلْبِكَ."],
+  ["Psalm 37:5","Commit your way to the Lord, trust also in Him, and He shall bring it to pass.","إِتَّكِلْ عَلَى الرَّبِّ وَاتَّكِلْ عَلَيْهِ وَهُوَ يَفْعَلُ."],
+  ["Psalm 40:1","I waited patiently for the Lord; and He inclined to me, and heard my cry.","اِنْتَظَرْتُ الرَّبَّ انْتِظَارًا، فَمَالَ إِلَيَّ وَسَمِعَ صُرَاخِي."],
+  ["Psalm 42:1","As the deer pants for the water brooks, so pants my soul for You, O God.","كَمَا يَشْتَاقُ الأَيَّلُ إِلَى جَدَاوِلِ الْمِيَاهِ هَكَذَا تَشْتَاقُ نَفْسِي إِلَيْكَ يَا اللهُ."],
+  ["Psalm 46:1","God is our refuge and strength, a very present help in trouble.","اَللهُ لَنَا مَلْجَأٌ وَقُوَّةٌ، عَوْنًا فِي الضِّيقَاتِ وُجِدَ سَرِيعًا."],
+  ["Psalm 46:10","Be still, and know that I am God.","اُسْكُتُوا وَاعْلَمُوا أَنِّي أَنَا اللهُ."],
+  ["Psalm 51:10","Create in me a clean heart, O God, and renew a steadfast spirit within me.","اُخْلُقْ فِيَّ قَلْبًا طَاهِرًا يَا اللهُ، وَجَدِّدْ فِي بَاطِنِي رُوحًا مُسْتَقِيمًا."],
+  ["Psalm 55:22","Cast your burden on the Lord, and He shall sustain you.","أَلْقِ عَلَى الرَّبِّ هَمَّكَ فَهُوَ يَعُولُكَ."],
+  ["Psalm 56:3","Whenever I am afraid, I will trust in You.","حِينَ أَخَافُ أَنَا بِكَ أَتَّكِلُ."],
+  ["Psalm 61:2","Lead me to the rock that is higher than I.","اِهْدِنِي إِلَى الصَّخْرَةِ الَّتِي هِيَ أَعْلَى مِنِّي."],
+  ["Psalm 62:5","My soul, wait silently for God alone, for my expectation is from Him.","إِنَّمَا لِلَّهِ تَوَقَّعِي يَا نَفْسِي لأَنَّ رَجَائِي مِنْهُ."],
+  ["Psalm 63:1","O God, You are my God; early will I seek You; my soul thirsts for You.","يَا اللهُ أَنْتَ إِلَهِي. إِلَيْكَ أَبْكِرُ. نَفْسِي عَطِشَتْ إِلَيْكَ."],
+  ["Psalm 68:19","Blessed be the Lord, who daily loads us with benefits.","مُبَارَكٌ الرَّبُّ الَّذِي يَحْمِلُنَا يَوْمًا فَيَوْمًا."],
+  ["Psalm 73:26","God is the strength of my heart and my portion forever.","اللهُ صَخْرَةُ قَلْبِي وَنَصِيبِي إِلَى الأَبَدِ."],
+  ["Psalm 84:11","No good thing will He withhold from those who walk uprightly.","لاَ يَمْنَعُ خَيْرًا عَنِ السَّالِكِينَ بِالْكَمَالِ."],
+  ["Psalm 86:5","For You, Lord, are good, and ready to forgive, and abundant in mercy.","لأَنَّكَ أَنْتَ يَا رَبُّ صَالِحٌ وَغَفُورٌ، وَكَثِيرُ الرَّحْمَةِ لِجَمِيعِ الدَّاعِينَ إِلَيْكَ."],
+  ["Psalm 90:12","Teach us to number our days, that we may gain a heart of wisdom.","عَلِّمْنَا أَنْ نَعُدَّ أَيَّامَنَا هَكَذَا فَنُحْضِرَ لِقَلْبِنَا حِكْمَةً."],
+  ["Psalm 91:1","He who dwells in the secret place of the Most High shall abide under the shadow of the Almighty.","السَّاكِنُ فِي سِتْرِ الْعَلِيِّ فِي ظِلِّ الْقَدِيرِ يَبِيتُ."],
+  ["Psalm 91:2","He is my refuge and my fortress; my God, in Him I will trust.","أَقُولُ لِلرَّبِّ: مَلْجَئِي وَحِصْنِي، إِلَهِي الَّذِي أَتَّكِلُ عَلَيْهِ."],
+  ["Psalm 91:4","He shall cover you with His feathers, and under His wings you shall take refuge.","بِرِيشِهِ يُظَلِّلُكَ وَتَحْتَ أَجْنِحَتِهِ تَحْتَمِي."],
+  ["Psalm 91:11","He shall give His angels charge over you, to keep you in all your ways.","لأَنَّهُ يُوصِي مَلاَئِكَتَهُ بِكَ لِيَحْفَظُوكَ فِي جَمِيعِ طُرُقِكَ."],
+  ["Psalm 96:3","Declare His glory among the nations, His wonders among all peoples.","أَخْبِرُوا بِمَجْدِهِ فِي الأُمَمِ، بِعَجَائِبِهِ فِي كُلِّ الشُّعُوبِ."],
+  ["Psalm 100:3","Know that the Lord, He is God; we are His people and the sheep of His pasture.","اِعْلَمُوا أَنَّ الرَّبَّ هُوَ اللهُ. هُوَ صَنَعَنَا وَنَحْنُ لَهُ. شَعْبُهُ وَغَنَمُ مَرْعَاهُ."],
+  ["Psalm 103:2","Bless the Lord, O my soul, and forget not all His benefits.","بَارِكِي الرَّبَّ يَا نَفْسِي وَلاَ تَنْسَيْ جَمِيعَ حَسَنَاتِهِ."],
+  ["Psalm 103:8","The Lord is merciful and gracious, slow to anger, and abounding in mercy.","اَلرَّبُّ رَحِيمٌ وَرَؤُوفٌ، طَوِيلُ الأَنَاةِ وَكَثِيرُ الرَّحْمَةِ."],
+  ["Psalm 103:12","As far as the east is from the west, so far has He removed our transgressions from us.","كَبُعْدِ الْمَشْرِقِ مِنَ الْمَغْرِبِ أَبْعَدَ عَنَّا مَعَاصِيَنَا."],
+  ["Psalm 107:1","Oh, give thanks to the Lord, for He is good! For His mercy endures forever.","احْمَدُوا الرَّبَّ لأَنَّهُ صَالِحٌ لأَنَّ إِلَى الأَبَدِ رَحْمَتَهُ."],
+  ["Psalm 112:7","His heart is steadfast, trusting in the Lord.","قَلْبُهُ مُتَثَبِّتٌ مُتَّكِلٌ عَلَى الرَّبِّ."],
+  ["Psalm 118:24","This is the day the Lord has made; we will rejoice and be glad in it.","هَذَا هُوَ الْيَوْمُ الَّذِي صَنَعَهُ الرَّبُّ. نَبْتَهِجُ وَنَفْرَحُ فِيهِ."],
+  ["Psalm 119:9","How can a young man cleanse his way? By taking heed according to Your word.","بِمَاذَا يُطَهِّرُ الشَّابُّ طَرِيقَهُ؟ بِحِفْظِهِ كَلاَمَكَ."],
+  ["Psalm 119:11","Your word I have hidden in my heart, that I might not sin against You.","فِي قَلْبِي خَبَأْتُ كَلاَمَكَ لِكَيْ لاَ أُخْطِئَ إِلَيْكَ."],
+  ["Psalm 119:105","Your word is a lamp to my feet and a light to my path.","كَلاَمُكَ سِرَاجٌ لِرِجْلَيَّ وَنُورٌ لِسَبِيلِي."],
+  ["Psalm 121:1","I will lift up my eyes to the hills — from whence comes my help?","أَرْفَعُ عَيْنَيَّ إِلَى الْجِبَالِ. مِنْ أَيْنَ يَأْتِي عَوْنِي؟"],
+  ["Psalm 121:2","My help comes from the Lord, who made heaven and earth.","عَوْنِي مِنْ عِنْدِ الرَّبِّ الَّذِي صَنَعَ السَّمَاءَ وَالأَرْضَ."],
+  ["Psalm 121:7","The Lord shall preserve you from all evil; He shall preserve your soul.","اَلرَّبُّ يَحْفَظُكَ مِنْ كُلِّ شَرٍّ. يَحْفَظُ نَفْسَكَ."],
+  ["Psalm 122:1","I was glad when they said to me, Let us go into the house of the Lord.","فَرِحْتُ بِالْقَائِلِينَ لِي: إِلَى بَيْتِ الرَّبِّ نَذْهَبُ."],
+  ["Psalm 127:1","Unless the Lord builds the house, they labor in vain who build it.","إِنْ لَمْ يَبْنِ الرَّبُّ الْبَيْتَ فَبَاطِلاً تَعِبَ الْبَانُونَهُ."],
+  ["Psalm 133:1","Behold, how good and how pleasant it is for brethren to dwell together in unity!","هَا مَا أَطْيَبَهُ وَمَا أَجْمَلَهُ أَنْ يَسْكُنَ الإِخْوَةُ مَعًا!"],
+  ["Psalm 138:8","The Lord will perfect that which concerns me; Your mercy, O Lord, endures forever.","اَلرَّبُّ يَقْضِي عَنِّي. يَا رَبُّ رَحْمَتُكَ إِلَى الأَبَدِ."],
+  ["Psalm 139:14","I am fearfully and wonderfully made; marvelous are Your works.","أَنَا مَصْنُوعٌ بِرَهْبَةٍ وَعَجَبٍ. عَجِيبَةٌ هِيَ أَعْمَالُكَ."],
+  ["Psalm 145:18","The Lord is near to all who call upon Him, to all who call upon Him in truth.","اَلرَّبُّ قَرِيبٌ مِنْ كُلِّ الَّذِينَ يَدْعُونَهُ، مِنْ كُلِّ الَّذِينَ يَدْعُونَهُ بِالْحَقِّ."],
+  ["Psalm 147:3","He heals the brokenhearted and binds up their wounds.","يَشْفِي الْمُنْكَسِرِي الْقَلْبِ وَيَعْصِبُ جُرُوحَهُمْ."],
+  ["Psalm 150:6","Let everything that has breath praise the Lord.","كُلُّ مَنْ لَهُ نَسَمٌ يُسَبِّحِ الرَّبَّ!"],
+  ["Proverbs 1:7","The fear of the Lord is the beginning of knowledge.","مَخَافَةُ الرَّبِّ رَأْسُ الْحِكْمَةِ."],
+  ["Proverbs 3:5","Trust in the Lord with all your heart, and lean not on your own understanding.","ثِقْ بِالرَّبِّ مِنْ كُلِّ قَلْبِكَ، وَلاَ تَتَّكِئْ عَلَى فَهْمِكَ."],
+  ["Proverbs 3:6","In all your ways acknowledge Him, and He shall direct your paths.","فِي كُلِّ طُرُقِكَ اعْتَرِفْ بِهِ وَهُوَ يُقَوِّمُ سُبُلَكَ."],
+  ["Proverbs 4:23","Keep your heart with all diligence, for out of it spring the issues of life.","بِكُلِّ حِفْظٍ احْفَظْ قَلْبَكَ، لأَنَّ مِنْهُ مَخَارِجَ الْحَيَاةِ."],
+  ["Proverbs 13:20","He who walks with wise men will be wise.","مَنْ يَسْلُكُ مَعَ الْحُكَمَاءِ يَصِرْ حَكِيمًا."],
+  ["Proverbs 15:1","A soft answer turns away wrath, but a harsh word stirs up anger.","اَلْجَوَابُ اللَّيِّنُ يَصْرِفُ الْغَضَبَ، أَمَّا الْكَلاَمُ الْمُوجِعُ فَيُهَيِّجُ السَّخَطَ."],
+  ["Proverbs 16:3","Commit your works to the Lord, and your thoughts will be established.","وَكِّلْ أَعْمَالَكَ إِلَى الرَّبِّ، فَتَثْبُتَ مُشَيَّدَاتُكَ."],
+  ["Proverbs 16:9","A man's heart plans his way, but the Lord directs his steps.","قَلْبُ الإِنْسَانِ يُدَبِّرُ طَرِيقَهُ وَالرَّبُّ يُصَرِّفُ خَطْوَتَهُ."],
+  ["Proverbs 17:17","A friend loves at all times, and a brother is born for adversity.","فِي كُلِّ وَقْتٍ يُحِبُّ الصَّدِيقُ، وَالأَخُ لِلضِّيقَةِ يُولَدُ."],
+  ["Proverbs 18:10","The name of the Lord is a strong tower; the righteous run to it and are safe.","اِسْمُ الرَّبِّ بُرْجٌ حَصِينٌ، إِلَيْهِ يَرْكُضُ الصِّدِّيقُ فَيَتَمَنَّعُ."],
+  ["Proverbs 22:6","Train up a child in the way he should go, and when he is old he will not depart from it.","دَرِّبِ الْوَلَدَ عَلَى طَرِيقِهِ، فَمَتَى شَاخَ لاَ يَحِيدُ عَنْهُ."],
+  ["Proverbs 24:16","A righteous man may fall seven times and rise again.","لأَنَّ الصِّدِّيقَ يَسْقُطُ سَبْعَ مَرَّاتٍ وَيَقُومُ."],
+  ["Proverbs 27:17","As iron sharpens iron, so a man sharpens the countenance of his friend.","حَدِيدٌ بِحَدِيدٍ يُحَدَّدُ، وَإِنْسَانٌ يُحَدِّدُ وَجْهَ صَاحِبِهِ."],
+  ["Proverbs 29:25","Whoever trusts in the Lord shall be safe.","مَنْ يَتَّكِلُ عَلَى الرَّبِّ يَرْتَفِعُ."],
+  ["Ecclesiastes 3:1","To everything there is a season, a time for every purpose under heaven.","لِكُلِّ شَيْءٍ زَمَانٌ وَلِكُلِّ أَمْرٍ تَحْتَ السَّمَاءِ وَقْتٌ."],
+  ["Ecclesiastes 4:9","Two are better than one, because they have a good reward for their labor.","اِثْنَانِ خَيْرٌ مِنْ وَاحِدٍ، إِذْ لَهُمَا أُجْرَةٌ حَسَنَةٌ فِي تَعَبِهِمَا."],
+  ["Isaiah 1:18","Though your sins are like scarlet, they shall be as white as snow.","إِنْ كَانَتْ خَطَايَاكُمْ كَالْقِرْمِزِ تَبْيَضُّ كَالثَّلْجِ."],
+  ["Isaiah 6:8","Here am I! Send me.","فَقُلْتُ: هَأَنَذَا أَرْسِلْنِي."],
+  ["Isaiah 9:6","His name will be called Wonderful, Counselor, Mighty God, Everlasting Father, Prince of Peace.","وَيُدْعَى اسْمُهُ عَجِيبًا مُشِيرًا إِلَهًا قَدِيرًا أَبًا أَبَدِيًّا رَئِيسَ السَّلاَمِ."],
+  ["Isaiah 26:3","You will keep him in perfect peace, whose mind is stayed on You.","اَلْعَزِيمَةُ الثَّابِتَةُ تَحْفَظُهَا سَالِمَةً سَالِمَةً لأَنَّهَا تَتَّكِلُ عَلَيْكَ."],
+  ["Isaiah 40:29","He gives power to the weak, and to those who have no might He increases strength.","يُعْطِي الْمُعْيَا قُوَّةً، وَلِعَدِيمِ الطَّاقَةِ يُكَثِّرُ شِدَّةً."],
+  ["Isaiah 40:31","Those who wait on the Lord shall renew their strength; they shall mount up with wings like eagles.","وَالَّذِينَ يَنْتَظِرُونَ الرَّبَّ يَسْتَجِدُّونَ قُوَّةً. يَرْفَعُونَ أَجْنِحَةً كَالنُّسُورِ."],
+  ["Isaiah 41:10","Fear not, for I am with you; be not dismayed, for I am your God. I will strengthen you, I will help you.","لاَ تَخَفْ لأَنِّي مَعَكَ. لاَ تَنْظُرْ حَوْلَكَ فَأَنَا إِلَهُكَ. أَنَا أُشَدِّدُكَ وَأُعِينُكَ."],
+  ["Isaiah 41:13","I, the Lord your God, will hold your right hand, saying to you, Fear not, I will help you.","لأَنِّي أَنَا الرَّبُّ إِلَهُكَ آخِذٌ بِيَمِينِكَ، الْقَائِلُ لَكَ: لاَ تَخَفْ. أَنَا أُعِينُكَ."],
+  ["Isaiah 43:1","Fear not, for I have redeemed you; I have called you by your name; you are Mine.","لاَ تَخَفْ لأَنِّي فَدَيْتُكَ. دَعَوْتُكَ بِاسْمِكَ. أَنْتَ لِي."],
+  ["Isaiah 43:2","When you pass through the waters, I will be with you.","حِينَ تَجْتَازُ فِي الْمِيَاهِ أَنَا مَعَكَ."],
+  ["Isaiah 43:19","Behold, I will do a new thing, now it shall spring forth.","هَأَنَذَا أَصْنَعُ شَيْئًا جَدِيدًا. الآنَ تَنْبُتُ. أَمَا تَعْلَمُونَهَا؟"],
+  ["Isaiah 53:5","He was wounded for our transgressions; by His stripes we are healed.","وَهُوَ مَجْرُوحٌ لأَجْلِ مَعَاصِينَا. وَبِحُبُرِهِ شُفِينَا نَحْنُ."],
+  ["Isaiah 54:10","My kindness shall not depart from you, nor shall My covenant of peace be removed.","رَحْمَتِي لاَ تَزُولُ عَنْكِ وَعَهْدُ سَلاَمِي لاَ يَتَزَعْزَعُ."],
+  ["Isaiah 55:8","My thoughts are not your thoughts, nor are your ways My ways, says the Lord.","أَفْكَارِي لَيْسَتْ أَفْكَارَكُمْ وَطُرُقُكُمْ لَيْسَتْ طُرُقِي يَقُولُ الرَّبُّ."],
+  ["Isaiah 55:11","My word shall not return to Me void, but it shall accomplish what I please.","كَذَلِكَ كَلاَمِي الَّذِي يَخْرُجُ مِنْ فَمِي. لاَ يَرْجِعُ إِلَيَّ فَارِغًا بَلْ يَعْمَلُ مَا سَرَّنِي."],
+  ["Isaiah 58:11","The Lord will guide you continually, and satisfy your soul in drought.","وَيَهْدِيكَ الرَّبُّ دَائِمًا وَيُشْبِعُ نَفْسَكَ فِي الْجُفُوفِ."],
+  ["Isaiah 61:1","The Spirit of the Lord God is upon Me, because the Lord has anointed Me to preach good tidings to the poor.","رُوحُ السَّيِّدِ الرَّبِّ عَلَيَّ لأَنَّ الرَّبَّ مَسَحَنِي لأُبَشِّرَ الْمَسَاكِينَ."],
+  ["Isaiah 64:8","We are the clay, and You our potter; and all we are the work of Your hand.","نَحْنُ الطِّينُ وَأَنْتَ خَازِفُنَا وَنَحْنُ كُلُّنَا عَمَلُ يَدِكَ."],
+  ["Jeremiah 1:5","Before I formed you in the womb I knew you.","قَبْلَمَا صَوَّرْتُكَ فِي الْبَطْنِ عَرَفْتُكَ."],
+  ["Jeremiah 17:7","Blessed is the man who trusts in the Lord, and whose hope is the Lord.","مُبَارَكٌ الرَّجُلُ الَّذِي يَتَّكِلُ عَلَى الرَّبِّ وَكَانَ الرَّبُّ مِحَطَّهُ."],
+  ["Jeremiah 29:11","I know the thoughts that I think toward you, says the Lord, thoughts of peace and not of evil, to give you a future and a hope.","أَنَا أَعْلَمُ الأَفْكَارَ الَّتِي أَنَا مُفَكِّرٌ بِهَا عَنْكُمْ، أَفْكَارُ سَلاَمٍ لاَ شَرٍّ لأُعْطِيَكُمْ آخِرَةً وَرَجَاءً."],
+  ["Jeremiah 29:12","Then you will call upon Me and go and pray to Me, and I will listen to you.","حِينَئِذٍ تَدْعُونَنِي وَتَذْهَبُونَ وَتُصَلُّونَ إِلَيَّ فَأَسْمَعُ لَكُمْ."],
+  ["Jeremiah 29:13","You will seek Me and find Me, when you search for Me with all your heart.","فَتَطْلُبُونَنِي وَتَجِدُونَنِي إِذَا تَفَتَّشْتُمْ عَنِّي بِكُلِّ قَلْبِكُمْ."],
+  ["Jeremiah 31:3","I have loved you with an everlasting love.","أَحْبَبْتُكِ بِمَحَبَّةٍ أَبَدِيَّةٍ."],
+  ["Jeremiah 33:3","Call to Me, and I will answer you, and show you great and mighty things.","اُدْعُنِي فَأُجِيبَكَ وَأُخْبِرَكَ بِعَظَائِمَ وَعَوَاصٍ لَمْ تَعْرِفْهَا."],
+  ["Lamentations 3:22","Through the Lord's mercies we are not consumed, because His compassions fail not.","إِنَّمَا بِرَحَمَاتِ الرَّبِّ أَنَّنَا لَمْ نَفْنَ، لأَنَّ مَرَاحِمَهُ لاَ تَزُولُ."],
+  ["Lamentations 3:23","They are new every morning; great is Your faithfulness.","كُلَّ صَبَاحٍ هِيَ جَدِيدَةٌ. كَثِيرٌ أَمَانَتُكَ."],
+  ["Lamentations 3:24","The Lord is my portion, therefore I hope in Him!","الرَّبُّ نَصِيبِي قَالَتْ نَفْسِي. لِذَلِكَ أَتَرَجَّاهُ."],
+  ["Ezekiel 36:26","I will give you a new heart and put a new spirit within you.","وَأُعْطِيكُمْ قَلْبًا جَدِيدًا وَأَجْعَلُ رُوحًا جَدِيدَةً فِي دَاخِلِكُمْ."],
+  ["Daniel 3:17","Our God whom we serve is able to deliver us from the burning fiery furnace.","إِلَهُنَا الَّذِي نَعْبُدُهُ قَادِرٌ أَنْ يُنَجِّيَنَا مِنَ الأَتُونِ."],
+  ["Joel 2:28","I will pour out My Spirit on all flesh; your sons and your daughters shall prophesy.","أَسْكُبُ رُوحِي عَلَى كُلِّ بَشَرٍ، فَيَتَنَبَّأُ بَنُوكُمْ وَبَنَاتُكُمْ."],
+  ["Micah 6:8","Do justly, to love mercy, and to walk humbly with your God.","فَعَلَ الإِنْصَافَ وَمَحَبَّةَ الرَّحْمَةِ وَالتَّوَاضُعَ فِي السُّلُوكِ مَعَ إِلَهِكَ."],
+  ["Micah 7:8","When I sit in darkness, the Lord will be a light to me.","حِينَ أَجْلِسُ فِي الظُّلْمَةِ الرَّبُّ نُورٌ لِي."],
+  ["Zephaniah 3:17","The Lord your God in your midst, the Mighty One, will save; He will rejoice over you with singing.","اَلرَّبُّ إِلَهُكَ فِي وَسَطِكَ جَبَّارٌ يُخَلِّصُ. يَبْتَهِجُ عَلَيْكَ بِفَرَحٍ يَسْكُتُ فِي مَحَبَّتِهِ."],
+  ["Zechariah 4:6","Not by might nor by power, but by My Spirit, says the Lord of hosts.","لَيْسَ بِالْحَيْلِ وَلاَ بِالْقُوَّةِ بَلْ بِرُوحِي، قَالَ رَبُّ الْجُنُودِ."],
+  ["Matthew 5:4","Blessed are those who mourn, for they shall be comforted.","طُوبَى لِلْحَزَانَى لأَنَّهُمْ يَتَعَزَّوْنَ."],
+  ["Matthew 5:8","Blessed are the pure in heart, for they shall see God.","طُوبَى لأَنْقِيَاءِ الْقَلْبِ لأَنَّهُمْ يُعَايِنُونَ اللهَ."],
+  ["Matthew 5:9","Blessed are the peacemakers, for they shall be called sons of God.","طُوبَى لِصَانِعِي السَّلاَمِ لأَنَّهُمْ أَبْنَاءَ اللهِ يُدْعَوْنَ."],
+  ["Matthew 5:14","You are the light of the world. A city that is set on a hill cannot be hidden.","أَنْتُمْ نُورُ الْعَالَمِ. لاَ يُمْكِنُ أَنْ تَخْفَى مَدِينَةٌ مَوْضُوعَةٌ عَلَى جَبَلٍ."],
+  ["Matthew 5:16","Let your light so shine before men, that they may see your good works and glorify your Father.","لِيُضِئْ نُورُكُمْ كَذَلِكَ قُدَّامَ النَّاسِ، لِيَرَوْا أَعْمَالَكُمُ الْحَسَنَةَ وَيُمَجِّدُوا أَبَاكُمُ الَّذِي فِي السَّمَاوَاتِ."],
+  ["Matthew 6:33","Seek first the kingdom of God and His righteousness, and all these things shall be added to you.","اِطْلُبُوا أَوَّلاً مَلَكُوتَ اللهِ وَبِرَّهُ، وَهَذِهِ كُلُّهَا تُزَادُ لَكُمْ."],
+  ["Matthew 7:7","Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.","اِسْأَلُوا تُعْطَوْا. اُطْلُبُوا تَجِدُوا. اِقْرَعُوا يُفْتَحْ لَكُمْ."],
+  ["Matthew 11:28","Come to Me, all you who labor and are heavy laden, and I will give you rest.","تَعَالَوْا إِلَيَّ يَا جَمِيعَ الْمُتْعَبِينَ وَالثَّقِيلِي الأَحْمَالِ وَأَنَا أُرِيحُكُمْ."],
+  ["Matthew 11:29","Take My yoke upon you and learn from Me, for I am gentle and lowly in heart.","اِحْمِلُوا نِيرِي عَلَيْكُمْ وَتَعَلَّمُوا مِنِّي، لأَنِّي وَدِيعٌ وَمُتَوَاضِعُ الْقَلْبِ."],
+  ["Matthew 19:26","With God all things are possible.","عِنْدَ اللهِ كُلُّ شَيْءٍ مُمْكِنٌ."],
+  ["Matthew 22:37","You shall love the Lord your God with all your heart, with all your soul, and with all your mind.","تُحِبُّ الرَّبَّ إِلَهَكَ مِنْ كُلِّ قَلْبِكَ وَمِنْ كُلِّ نَفْسِكَ وَمِنْ كُلِّ فِكْرِكَ."],
+  ["Matthew 22:39","You shall love your neighbor as yourself.","تُحِبُّ قَرِيبَكَ كَنَفْسِكَ."],
+  ["Matthew 28:20","Lo, I am with you always, even to the end of the age.","هَا أَنَا مَعَكُمْ كُلَّ الأَيَّامِ إِلَى انْقِضَاءِ الدَّهْرِ."],
+  ["Mark 10:27","With God all things are possible.","كُلُّ الأَشْيَاءِ مُمْكِنَةٌ عِنْدَ اللهِ."],
+  ["Mark 11:24","Whatever things you ask when you pray, believe that you receive them, and you will have them.","كُلُّ مَا تَطْلُبُونَهُ حِينَ تُصَلُّونَ فَآمِنُوا أَنَّكُمْ تَنَالُونَهُ فَيَكُونُ لَكُمْ."],
+  ["Luke 1:37","With God nothing will be impossible.","لأَنَّهُ لَيْسَ شَيْءٌ غَيْرُ مُمْكِنٍ لَدَى اللهِ."],
+  ["Luke 6:38","Give, and it will be given to you: good measure, pressed down, shaken together, and running over.","أَعْطُوا تُعْطَوْا. كَيْلاً جَيِّدًا مَلْبُوكًا مَهْزُوزًا فَائِضًا يُعْطُونَ فِي حِجْرِكُمْ."],
+  ["Luke 11:9","Ask, and it will be given to you; seek, and you will find; knock, and the door will be opened to you.","اِسْأَلُوا تُعْطَوْا. اُطْلُبُوا تَجِدُوا. اِقْرَعُوا يُفْتَحْ لَكُمْ."],
+  ["Luke 17:6","If you have faith as a mustard seed, you can say to this mulberry tree, Be pulled up by the roots.","لَوْ كَانَ لَكُمْ إِيمَانٌ مِثْلُ حَبَّةِ خَرْدَلٍ، لَقُلْتُمْ لِهَذِهِ التُّوتَةِ: اِنْقَلِعِي وَانْغَرِسِي فِي الْبَحْرِ فَأَطَاعَتْكُمْ."],
+  ["John 1:1","In the beginning was the Word, and the Word was with God, and the Word was God.","فِي الْبَدْءِ كَانَ الْكَلِمَةُ وَالْكَلِمَةُ كَانَ عِنْدَ اللهِ وَكَانَ الْكَلِمَةُ اللهَ."],
+  ["John 1:12","As many as received Him, to them He gave the right to become children of God.","أَمَّا كُلُّ الَّذِينَ قَبِلُوهُ فَأَعْطَاهُمْ سُلْطَانًا أَنْ يَصِيرُوا أَوْلاَدَ اللهِ."],
+  ["John 3:16","For God so loved the world that He gave His only begotten Son, that whoever believes in Him should not perish but have everlasting life.","لأَنَّهُ هَكَذَا أَحَبَّ اللهُ الْعَالَمَ حَتَّى بَذَلَ ابْنَهُ الْوَحِيدَ، لِكَيْ لاَ يَهْلِكَ كُلُّ مَنْ يُؤْمِنُ بِهِ بَلْ تَكُونُ لَهُ الْحَيَاةُ الأَبَدِيَّةُ."],
+  ["John 3:17","God did not send His Son into the world to condemn the world, but that the world through Him might be saved.","لأَنَّهُ لَمْ يُرْسِلِ اللهُ ابْنَهُ إِلَى الْعَالَمِ لِيَدِينَ الْعَالَمَ، بَلْ لِيَخْلُصَ بِهِ الْعَالَمُ."],
+  ["John 4:24","God is Spirit, and those who worship Him must worship in spirit and truth.","اَللهُ رُوحٌ وَالَّذِينَ يَسْجُدُونَ لَهُ فَبِالرُّوحِ وَالْحَقِّ يَنْبَغِي أَنْ يَسْجُدُوا."],
+  ["John 6:35","I am the bread of life. He who comes to Me shall never hunger.","أَنَا هُوَ خُبْزُ الْحَيَاةِ. مَنْ يُقْبِلُ إِلَيَّ فَلاَ يَجُوعُ أَبَدًا."],
+  ["John 8:12","I am the light of the world. He who follows Me shall not walk in darkness.","أَنَا هُوَ نُورُ الْعَالَمِ. مَنْ يَتْبَعْنِي فَلاَ يَمْشِي فِي الظُّلْمَةِ."],
+  ["John 8:32","You shall know the truth, and the truth shall make you free.","وَتَعْرِفُونَ الْحَقَّ وَالْحَقُّ يُحَرِّرُكُمْ."],
+  ["John 10:10","I have come that they may have life, and that they may have it more abundantly.","أَنَا جِئْتُ لِتَكُونَ لَهُمْ حَيَاةٌ وَلِيَكُونَ لَهُمْ أَفْضَلُ."],
+  ["John 10:11","I am the good shepherd. The good shepherd gives His life for the sheep.","أَنَا هُوَ الرَّاعِي الصَّالِحُ. وَالرَّاعِي الصَّالِحُ يَبْذُلُ نَفْسَهُ عَنِ الْخِرَافِ."],
+  ["John 11:25","I am the resurrection and the life. He who believes in Me, though he may die, he shall live.","أَنَا هُوَ الْقِيَامَةُ وَالْحَيَاةُ. مَنْ آمَنَ بِي وَلَوْ مَاتَ فَسَيَحْيَا."],
+  ["John 13:34","A new commandment I give to you, that you love one another; as I have loved you.","وَصِيَّةً جَدِيدَةً أَنَا أُعْطِيكُمْ: أَنْ تُحِبُّوا بَعْضُكُمْ بَعْضًا. كَمَا أَحْبَبْتُكُمْ."],
+  ["John 14:1","Let not your heart be troubled; you believe in God, believe also in Me.","لاَ يَضْطَرِبْ قَلْبُكُمْ. أَنْتُمْ تُؤْمِنُونَ بِاللهِ فَآمِنُوا بِي أَيْضًا."],
+  ["John 14:6","I am the way, the truth, and the life. No one comes to the Father except through Me.","أَنَا هُوَ الطَّرِيقُ وَالْحَقُّ وَالْحَيَاةُ. لَيْسَ أَحَدٌ يَأْتِي إِلَى الآبِ إِلاَّ بِي."],
+  ["John 14:27","Peace I leave with you, My peace I give to you. Let not your heart be troubled.","سَلاَمًا أَتْرُكُ لَكُمْ. سَلاَمِي أُعْطِيكُمْ. لاَ يَضْطَرِبْ قَلْبُكُمْ وَلاَ يَرْهَبْ."],
+  ["John 15:5","I am the vine, you are the branches. He who abides in Me bears much fruit.","أَنَا الْكَرْمَةُ وَأَنْتُمُ الأَغْصَانُ. مَنْ يَثْبُتُ فِيَّ وَأَنَا فِيهِ هَذَا يَأْتِي بِثَمَرٍ كَثِيرٍ."],
+  ["John 15:13","Greater love has no one than this, than to lay down one's life for his friends.","لَيْسَ لأَحَدٍ حُبٌّ أَعْظَمُ مِنْ هَذَا: أَنْ يَضَعَ أَحَدٌ نَفْسَهُ لأَجْلِ أَحِبَّائِهِ."],
+  ["John 16:33","Be of good cheer, I have overcome the world.","ثِقُوا: أَنَا قَدْ غَلَبْتُ الْعَالَمَ."],
+  ["John 17:17","Sanctify them by Your truth. Your word is truth.","قَدِّسْهُمْ فِي حَقِّكَ. كَلاَمُكَ هُوَ حَقٌّ."],
+  ["Acts 1:8","You shall receive power when the Holy Spirit has come upon you; and you shall be witnesses to Me.","سَتَنَالُونَ قُوَّةً بَعْدَمَا يَحِلُّ الرُّوحُ الْقُدُسُ عَلَيْكُمْ. وَتَكُونُونَ لِي شُهُودًا."],
+  ["Acts 4:12","There is no other name under heaven given among men by which we must be saved.","لَيْسَ بِاسْمٍ آخَرَ تَحْتَ السَّمَاءِ قَدْ أُعْطِيَ بَيْنَ النَّاسِ بِهِ يَنْبَغِي أَنْ نَخْلُصَ."],
+  ["Acts 16:31","Believe on the Lord Jesus Christ, and you will be saved.","آمِنْ بِالرَّبِّ يَسُوعَ الْمَسِيحِ فَتَخْلُصَ أَنْتَ وَأَهْلُ بَيْتِكَ."],
+  ["Romans 5:8","While we were still sinners, Christ died for us.","وَلَكِنَّ اللهَ يُبَيِّنُ مَحَبَّتَهُ لَنَا، لأَنَّهُ وَنَحْنُ بَعْدُ خُطَاةٌ مَاتَ الْمَسِيحُ عَنَّا."],
+  ["Romans 6:23","The wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.","لأَنَّ أُجْرَةَ الْخَطِيَّةِ هِيَ مَوْتٌ، وَأَمَّا هِبَةُ اللهِ فَهِيَ حَيَاةٌ أَبَدِيَّةٌ فِي الْمَسِيحِ يَسُوعَ رَبِّنَا."],
+  ["Romans 8:1","There is therefore now no condemnation to those who are in Christ Jesus.","إِذًا لاَ شَيْءَ مِنَ الإِدَانَةِ عَلَى الَّذِينَ هُمْ فِي الْمَسِيحِ يَسُوعَ."],
+  ["Romans 8:28","All things work together for good to those who love God.","وَنَحْنُ نَعْلَمُ أَنَّ كُلَّ الأَشْيَاءِ تَعْمَلُ مَعًا لِلْخَيْرِ لِلَّذِينَ يُحِبُّونَ اللهَ."],
+  ["Romans 8:31","If God is for us, who can be against us?","فَمَاذَا نَقُولُ لِهَذَا؟ إِنْ كَانَ اللهُ مَعَنَا فَمَنْ عَلَيْنَا؟"],
+  ["Romans 8:37","We are more than conquerors through Him who loved us.","لَكِنَّنَا فِي هَذِهِ كُلِّهَا نَغْلِبُ غَلَبًا عَظِيمًا بِالَّذِي أَحَبَّنَا."],
+  ["Romans 8:38","Neither death nor life shall be able to separate us from the love of God.","لأَنِّي مُوقِنٌ أَنَّهُ لاَ مَوْتَ وَلاَ حَيَاةَ، يَسْتَطِيعُ أَنْ يَفْصِلَنَا عَنْ مَحَبَّةِ اللهِ."],
+  ["Romans 10:9","If you confess with your mouth the Lord Jesus and believe in your heart that God has raised Him from the dead, you will be saved.","إِنِ اعْتَرَفْتَ بِفَمِكَ بِالرَّبِّ يَسُوعَ وَآمَنْتَ بِقَلْبِكَ أَنَّ اللهَ أَقَامَهُ مِنَ الأَمْوَاتِ خَلَصْتَ."],
+  ["Romans 12:2","Be transformed by the renewing of your mind.","تَجَدَّدُوا بِتَجْدِيدِ أَذْهَانِكُمْ لِتَخْتَبِرُوا مَا هُوَ إِرَادَةُ اللهِ."],
+  ["Romans 15:13","May the God of hope fill you with all joy and peace in believing.","وَاللهُ الرَّجَاءِ يَمْلأُكُمْ كُلَّ سُرُورٍ وَسَلاَمٍ فِي الإِيمَانِ."],
+  ["1 Corinthians 2:9","Eye has not seen, nor ear heard the things which God has prepared for those who love Him.","مَا لَمْ تَرَ عَيْنٌ وَلَمْ تَسْمَعْ أُذُنٌ هَيَّأَهُ اللهُ لِلَّذِينَ يُحِبُّونَهُ."],
+  ["1 Corinthians 10:13","God is faithful, who will not allow you to be tempted beyond what you are able.","اَللهُ أَمِينٌ لاَ يَدَعُكُمْ تُجَرَّبُونَ فَوْقَ مَا تَسْتَطِيعُونَ."],
+  ["1 Corinthians 13:4","Love suffers long and is kind; love does not envy.","اَلْمَحَبَّةُ تَتَأَنَّى وَتَرْفُقُ. اَلْمَحَبَّةُ لاَ تَحْسِدُ."],
+  ["1 Corinthians 13:8","Love never fails.","اَلْمَحَبَّةُ لاَ تَسْقُطُ قَطُّ."],
+  ["1 Corinthians 13:13","Now abide faith, hope, love, these three; but the greatest of these is love.","وَالآنَ يَثْبُتُ الإِيمَانُ وَالرَّجَاءُ وَالْمَحَبَّةُ، هَذِهِ الثَّلاَثَةُ. وَلَكِنَّ أَعْظَمَهَا الْمَحَبَّةُ."],
+  ["1 Corinthians 15:58","Be steadfast, immovable, always abounding in the work of the Lord.","كُونُوا رَاسِخِينَ غَيْرَ مُتَزَعْزِعِينَ، مُكْثِرِينَ فِي عَمَلِ الرَّبِّ فِي كُلِّ حِينٍ."],
+  ["2 Corinthians 5:7","We walk by faith, not by sight.","إِذْ نَسْلُكُ بِالإِيمَانِ لاَ بِالْعِيَانِ."],
+  ["2 Corinthians 5:17","If anyone is in Christ, he is a new creation; old things have passed away; all things have become new.","إِنْ كَانَ أَحَدٌ فِي الْمَسِيحِ فَهُوَ خَلِيقَةٌ جَدِيدَةٌ. الأَشْيَاءُ الْعَتِيقَةُ قَدْ مَضَتْ. كُلُّ شَيْءٍ قَدْ صَارَ جَدِيدًا."],
+  ["2 Corinthians 12:9","My grace is sufficient for you, for My strength is made perfect in weakness.","يَكْفِيكَ نِعْمَتِي، لأَنَّ قُوَّتِي فِي الضُّعْفِ تُكْمَلُ."],
+  ["Galatians 2:20","I have been crucified with Christ; it is no longer I who live, but Christ lives in me.","مَعَ الْمَسِيحِ صُلِبْتُ. فَأَحْيَا لاَ أَنَا بَلِ الْمَسِيحُ يَحْيَا فِيَّ."],
+  ["Galatians 5:22","The fruit of the Spirit is love, joy, peace, longsuffering, kindness, goodness, faithfulness.","وَأَمَّا ثَمَرُ الرُّوحِ فَهُوَ: مَحَبَّةٌ، فَرَحٌ، سَلاَمٌ، طُولُ أَنَاةٍ، لُطْفٌ، صَلاَحٌ، إِيمَانٌ."],
+  ["Galatians 6:9","Let us not grow weary while doing good, for in due season we shall reap if we do not lose heart.","لاَ نَمَلَّ مِنْ عَمَلِ الْخَيْرِ، لأَنَّنَا سَنَحْصُدُ فِي وَقْتِهِ إِنْ كُنَّا لاَ نَكِلُّ."],
+  ["Ephesians 2:8","By grace you have been saved through faith, and that not of yourselves; it is the gift of God.","لأَنَّكُمْ بِالنِّعْمَةِ مُخَلَّصُونَ بِالإِيمَانِ، وَذَلِكَ لَيْسَ مِنْكُمْ. هُوَ عَطِيَّةُ اللهِ."],
+  ["Ephesians 2:10","We are His workmanship, created in Christ Jesus for good works.","لأَنَّنَا صَنِيعَتُهُ مَخْلُوقِينَ فِي الْمَسِيحِ يَسُوعَ لِلأَعْمَالِ الصَّالِحَةِ."],
+  ["Ephesians 3:20","To Him who is able to do exceedingly abundantly above all that we ask or think.","أَمَّا لِلْقَادِرِ أَنْ يَفْعَلَ فَوْقَ جَمِيعِ مَا نَطْلُبُ أَوْ نَفْتَكِرُ بِحَسَبِ الْقُوَّةِ الْعَامِلَةِ فِينَا."],
+  ["Ephesians 4:32","Be kind to one another, tenderhearted, forgiving one another, even as God in Christ forgave you.","وَكُونُوا لُطَفَاءَ بَعْضُكُمْ نَحْوَ بَعْضٍ، شَفُوقِينَ، مُتَسَامِحِينَ كَمَا سَامَحَكُمُ اللهُ أَيْضًا فِي الْمَسِيحِ."],
+  ["Ephesians 6:10","Be strong in the Lord and in the power of His might.","تَقَوَّوْا فِي الرَّبِّ وَفِي شِدَّةِ قُدْرَتِهِ."],
+  ["Philippians 1:6","He who has begun a good work in you will complete it.","وَاثِقًا بِهَذَا عَيْنِهِ أَنَّ الَّذِي ابْتَدَأَ فِيكُمْ عَمَلاً صَالِحًا سَيُكَمِّلُهُ."],
+  ["Philippians 4:4","Rejoice in the Lord always. Again I will say, rejoice!","افْرَحُوا فِي الرَّبِّ كُلَّ حِينٍ. وَأَقُولُ أَيْضًا افْرَحُوا."],
+  ["Philippians 4:6","Be anxious for nothing, but in everything by prayer and supplication, with thanksgiving.","لاَ تَهْتَمُّوا بِشَيْءٍ بَلْ فِي كُلِّ شَيْءٍ بِالصَّلاَةِ وَالدُّعَاءِ مَعَ الشُّكْرِ."],
+  ["Philippians 4:7","The peace of God, which surpasses all understanding, will guard your hearts and minds.","وَسَلاَمُ اللهِ الَّذِي يَفُوقُ كُلَّ عَقْلٍ سَيَحْفَظُ قُلُوبَكُمْ وَأَفْكَارَكُمْ."],
+  ["Philippians 4:8","Whatever things are true, whatever things are noble, whatever things are just — meditate on these things.","كُلُّ مَا هُوَ حَقٌّ، كُلُّ مَا هُوَ شَرِيفٌ، كُلُّ مَا هُوَ عَادِلٌ، فَكِّرُوا فِي هَذِهِ."],
+  ["Philippians 4:13","I can do all things through Christ who strengthens me.","أَسْتَطِيعُ كُلَّ شَيْءٍ فِي الْمَسِيحِ الَّذِي يُقَوِّينِي."],
+  ["Philippians 4:19","My God shall supply all your need according to His riches in glory.","وَإِلَهِي سَيَمْلأُ كُلَّ احْتِيَاجِكُمْ بِحَسَبِ غِنَاهُ فِي الْمَجْدِ."],
+  ["Colossians 3:2","Set your mind on things above, not on things on the earth.","اِهْتَمُّوا بِالأُمُورِ الَّتِي فَوْقُ لاَ بِالَّتِي عَلَى الأَرْضِ."],
+  ["Colossians 3:15","Let the peace of God rule in your hearts.","وَلْيَتَحَكَّمْ فِي قُلُوبِكُمْ سَلاَمُ اللهِ."],
+  ["Colossians 3:17","Whatever you do in word or deed, do all in the name of the Lord Jesus.","وَكُلُّ مَا عَمِلْتُمْ بِقَوْلٍ أَوْ فِعْلٍ فَاعْمَلُوا الْكُلَّ بِاسْمِ الرَّبِّ يَسُوعَ."],
+  ["Colossians 3:23","Whatever you do, do it heartily, as to the Lord and not to men.","كُلُّ مَا تَعْمَلُونَهُ فَاعْمَلُوهُ مِنَ النَّفْسِ كَمَا لِلرَّبِّ لاَ لِلنَّاسِ."],
+  ["1 Thessalonians 5:16","Rejoice always.","افْرَحُوا فِي كُلِّ حِينٍ."],
+  ["1 Thessalonians 5:17","Pray without ceasing.","صَلُّوا بِلاَ انْقِطَاعٍ."],
+  ["1 Thessalonians 5:18","In everything give thanks; for this is the will of God in Christ Jesus for you.","اشْكُرُوا فِي كُلِّ شَيْءٍ لأَنَّ هَذِهِ هِيَ إِرَادَةُ اللهِ فِي الْمَسِيحِ يَسُوعَ لأَجْلِكُمْ."],
+  ["2 Thessalonians 3:3","The Lord is faithful, who will establish you and guard you from the evil one.","وَلَكِنَّ الرَّبَّ أَمِينٌ الَّذِي سَيُثَبِّتُكُمْ وَيَحْفَظُكُمْ مِنَ الشِّرِّيرِ."],
+  ["2 Timothy 1:7","God has not given us a spirit of fear, but of power and of love and of a sound mind.","لأَنَّ اللهَ لَمْ يُعْطِنَا رُوحَ الْجُبْنِ، بَلْ رُوحَ الْقُوَّةِ وَالْمَحَبَّةِ وَالنِّظَامِ."],
+  ["2 Timothy 3:16","All Scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction.","كُلُّ الْكِتَابِ هُوَ مُوحًى بِهِ مِنَ اللهِ وَنَافِعٌ لِلتَّعْلِيمِ وَالتَّوْبِيخِ لِلتَّقْوِيمِ."],
+  ["Hebrews 4:12","The word of God is living and powerful, and sharper than any two-edged sword.","لأَنَّ كَلِمَةَ اللهِ حَيَّةٌ وَفَعَّالَةٌ وَأَمْضَى مِنْ كُلِّ سَيْفٍ ذِي حَدَّيْنِ."],
+  ["Hebrews 11:1","Faith is the substance of things hoped for, the evidence of things not seen.","اَلإِيمَانُ هُوَ الثِّقَةُ بِمَا يُرْجَى وَالإِيقَانُ بِأُمُورٍ لاَ تُرَى."],
+  ["Hebrews 11:6","Without faith it is impossible to please Him.","وَبِدُونِ إِيمَانٍ لاَ يُمْكِنُ إِرْضَاؤُهُ."],
+  ["Hebrews 12:1","Let us run with endurance the race that is set before us.","نَجْرِي بِالصَّبْرِ فِي الْجِهَادِ الْمَوْضُوعِ أَمَامَنَا."],
+  ["Hebrews 12:2","Looking unto Jesus, the author and finisher of our faith.","نَاظِرِينَ إِلَى رَئِيسِ الإِيمَانِ وَمُكَمِّلِهِ يَسُوعَ."],
+  ["Hebrews 13:5","I will never leave you nor forsake you.","لاَ أَتْرُكُكَ وَلاَ أَخْذُلُكَ."],
+  ["Hebrews 13:8","Jesus Christ is the same yesterday, today, and forever.","يَسُوعُ الْمَسِيحُ هُوَ هُوَ أَمْسَ وَالْيَوْمَ وَإِلَى الأَبَدِ."],
+  ["James 1:5","If any of you lacks wisdom, let him ask of God, who gives to all liberally.","وَإِنْ كَانَ أَحَدٌ مِنْكُمْ تَعُوزُهُ حِكْمَةٌ فَلْيَطْلُبْ مِنَ اللهِ الَّذِي يُعْطِي الْجَمِيعَ بِسَخَاءٍ."],
+  ["James 1:17","Every good gift and every perfect gift is from above.","كُلُّ عَطِيَّةٍ صَالِحَةٍ وَكُلُّ مَوْهِبَةٍ تَامَّةٍ هِيَ مِنْ فَوْقُ."],
+  ["James 4:7","Submit to God. Resist the devil and he will flee from you.","فَاخْضَعُوا للهِ. قَاوِمُوا إِبْلِيسَ فَيَهْرُبَ مِنْكُمْ."],
+  ["James 4:8","Draw near to God and He will draw near to you.","اِقْتَرِبُوا مِنَ اللهِ فَيَقْتَرِبَ مِنْكُمْ."],
+  ["James 5:16","The effective, fervent prayer of a righteous man avails much.","صَلاَةُ الْبَارِّ تَقْتَدِرُ كَثِيرًا فِي فِعْلِهَا."],
+  ["1 Peter 5:7","Casting all your care upon Him, for He cares for you.","مُلْقِينَ كُلَّ هَمِّكُمْ عَلَيْهِ لأَنَّهُ هُوَ يَعْتَنِي بِكُمْ."],
+  ["1 Peter 4:8","Above all things have fervent love for one another, for love will cover a multitude of sins.","وَقَبْلَ كُلِّ شَيْءٍ كُونُوا مُتَحَابِّينَ بَعْضُكُمْ بَعْضًا بِجِدٍّ، لأَنَّ الْمَحَبَّةَ تَسْتُرُ كَثِيرًا مِنَ الْخَطَايَا."],
+  ["2 Peter 3:9","The Lord is not willing that any should perish but that all should come to repentance.","لاَ يَشَاءُ أَنْ يَهْلِكَ أُنَاسٌ، بَلْ أَنْ يُقْبِلَ الْجَمِيعُ إِلَى التَّوْبَةِ."],
+  ["1 John 1:9","If we confess our sins, He is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.","إِنِ اعْتَرَفْنَا بِخَطَايَانَا فَهُوَ أَمِينٌ وَعَادِلٌ حَتَّى يَغْفِرَ لَنَا خَطَايَانَا وَيُطَهِّرَنَا مِنْ كُلِّ إِثْمٍ."],
+  ["1 John 3:1","Behold what manner of love the Father has bestowed on us, that we should be called children of God!","اُنْظُرُوا أَيَّةَ مَحَبَّةٍ أَعْطَانَا الآبُ حَتَّى نُدْعَى أَوْلاَدَ اللهِ!"],
+  ["1 John 4:4","He who is in you is greater than he who is in the world.","أَعْظَمُ هُوَ الَّذِي فِيكُمْ مِنَ الَّذِي فِي الْعَالَمِ."],
+  ["1 John 4:7","Love is of God; and everyone who loves is born of God and knows God.","اَلْمَحَبَّةُ هِيَ مِنَ اللهِ وَكُلُّ مَنْ يُحِبُّ فَقَدْ وُلِدَ مِنَ اللهِ وَيَعْرِفُ اللهَ."],
+  ["1 John 4:8","God is love.","اَللهُ مَحَبَّةٌ."],
+  ["1 John 4:19","We love Him because He first loved us.","نَحْنُ نُحِبُّهُ لأَنَّهُ هُوَ أَحَبَّنَا أَوَّلاً."],
+  ["Jude 1:24","To Him who is able to keep you from stumbling, and to present you faultless before the presence of His glory.","لِلْقَادِرِ أَنْ يَحْفَظَكُمْ غَيْرَ عَاثِرِينَ وَيُوقِفَكُمْ أَمَامَ مَجْدِهِ بِلاَ عَيْبٍ."],
+  ["Revelation 1:8","I am the Alpha and the Omega, the Beginning and the End, says the Lord.","أَنَا هُوَ الأَلِفُ وَالْيَاءُ، الْبِدَايَةُ وَالنِّهَايَةُ، يَقُولُ الرَّبُّ."],
+  ["Revelation 3:20","Behold, I stand at the door and knock. If anyone hears My voice and opens the door, I will come in to him.","هَا أَنَا وَاقِفٌ عَلَى الْبَابِ وَأَقْرَعُ. إِنْ سَمِعَ أَحَدٌ صَوْتِي وَفَتَحَ الْبَابَ أَدْخُلُ إِلَيْهِ."],
+  ["Revelation 21:4","God will wipe away every tear from their eyes; there shall be no more death, nor sorrow, nor crying.","وَسَيَمْسَحُ اللهُ كُلَّ دَمْعَةٍ مِنْ عُيُونِهِمْ، وَالْمَوْتُ لاَ يَكُونُ فِي مَا بَعْدُ، وَلاَ حُزْنٌ وَلاَ صُرَاخٌ وَلاَ وَجَعٌ."],
+  ["Revelation 21:5","Behold, I make all things new.","هَا أَنَا أَصْنَعُ كُلَّ شَيْءٍ جَدِيدًا."],
+  ["Revelation 22:13","I am the Alpha and the Omega, the Beginning and the End, the First and the Last.","أَنَا الأَلِفُ وَالْيَاءُ، الْبِدَايَةُ وَالنِّهَايَةُ، الأَوَّلُ وَالآخِرُ."]
+];
+
+function getDayOfYear() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  return Math.floor((now - start) / 86400000);
+}
+
+function formatDate(d) {
+  return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+}
+
+const day = getDayOfYear();
+const today = new Date();
+const [ref, en, ar] = VERSES[(day - 1) % VERSES.length];
+const pct = Math.round((day / 365) * 100);
+
+document.getElementById('dateChip').textContent = formatDate(today);
+document.getElementById('verseRef').textContent = ref;
+document.getElementById('dayNum').textContent = day;
+document.getElementById('pct').textContent = pct + '%';
+document.getElementById('progressBar').style.width = pct + '%';
+
+document.getElementById('verseContent').innerHTML = `
+  <div class="verse-en">\u201C${en}\u201D</div>
+  <div class="lang-sep">
+    <div class="lang-sep-line"></div>
+    <span class="lang-sep-tag">Arabic · عربي</span>
+    <div class="lang-sep-line r"></div>
+  </div>
+  <div class="verse-ar">\u201C${ar}\u201D</div>
+`;
+
+function shareVerse() {
+  const msg = `${ref}\n\n"${en}"\n\n"${ar}"\n\n— NKJV | الكتاب المقدس\nArchangel Michael & St. Mena Coptic Orthodox Church, Staten Island NY`;
+  if (navigator.share) {
+    navigator.share({ title: 'Verse of the Day · آية اليوم', text: msg });
+  } else {
+    navigator.clipboard.writeText(msg).then(() => {
+      const btn = document.querySelector('.share-btn');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied! · تم النسخ!';
+      setTimeout(() => { btn.textContent = orig; }, 2500);
+    });
+  }
+}
+
+// ── Download verse as image ───────────────────────────────────────────────
+async function downloadImage() {
+  const btn = document.getElementById('dlBtn');
+  const icon = document.getElementById('dlIcon');
+  const label = document.getElementById('dlLabel');
+  btn.classList.add('loading');
+  icon.textContent = '⏳';
+  label.textContent = 'Generating...';
+
+  try {
+    const W = 1080, H = 1350; // Instagram portrait ratio
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    // ── Background gradient ──────────────────────────────
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0,   '#8a1225');
+    bg.addColorStop(0.4, '#b81c34');
+    bg.addColorStop(0.7, '#c8401a');
+    bg.addColorStop(1,   '#8a1225');
+    ctx.fillStyle = bg;
+    ctx.roundRect(0, 0, W, H, 0);
+    ctx.fill();
+
+    // Subtle radial glow centre
+    const glow = ctx.createRadialGradient(W/2, H*0.42, 0, W/2, H*0.42, W*0.7);
+    glow.addColorStop(0,   'rgba(255,220,120,0.18)');
+    glow.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+
+    // ── Top gold line ────────────────────────────────────
+    const topLine = ctx.createLinearGradient(0,0,W,0);
+    topLine.addColorStop(0,   'rgba(245,200,66,0)');
+    topLine.addColorStop(0.5, 'rgba(245,200,66,0.9)');
+    topLine.addColorStop(1,   'rgba(245,200,66,0)');
+    ctx.fillStyle = topLine;
+    ctx.fillRect(0, 0, W, 5);
+
+    // Bottom gold line
+    ctx.fillStyle = topLine;
+    ctx.fillRect(0, H - 5, W, 5);
+
+    // ── Helper: draw coptic cross ────────────────────────
+    function drawCross(cx, cy, scale) {
+      const s = scale;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.fillStyle = '#f5c842';
+      ctx.strokeStyle = '#f5c842';
+
+      // Circle halo
+      ctx.beginPath();
+      ctx.arc(0, -s*18, s*12, 0, Math.PI*2);
+      ctx.lineWidth = s*3.5;
+      ctx.stroke();
+
+      // Vertical arm
+      ctx.beginPath();
+      ctx.roundRect(-s*4, -s*7, s*8, s*65, s*2);
+      ctx.fill();
+
+      // Horizontal arm
+      ctx.beginPath();
+      ctx.roundRect(-s*30, s*15, s*60, s*10, s*2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // ── Helper: wrap text ────────────────────────────────
+    function wrapText(ctx, text, x, y, maxW, lineH) {
+      const words = text.split(' ');
+      let line = '';
+      const lines = [];
+      for (let w of words) {
+        const test = line ? line + ' ' + w : w;
+        if (ctx.measureText(test).width > maxW && line) {
+          lines.push(line);
+          line = w;
+        } else { line = test; }
+      }
+      if (line) lines.push(line);
+      const totalH = lines.length * lineH;
+      let curY = y - totalH / 2;
+      for (let l of lines) {
+        ctx.fillText(l, x, curY);
+        curY += lineH;
+      }
+      return curY;
+    }
+
+    // ── Helper: wrap RTL Arabic text ─────────────────────
+    function wrapArabic(ctx, text, x, y, maxW, lineH) {
+      const words = text.split(' ').reverse();
+      let line = '';
+      const lines = [];
+      for (let w of words) {
+        const test = line ? w + ' ' + line : w;
+        if (ctx.measureText(test).width > maxW && line) {
+          lines.push(line);
+          line = w;
+        } else { line = test; }
+      }
+      if (line) lines.push(line);
+      const totalH = lines.length * lineH;
+      let curY = y - totalH / 2;
+      for (let l of lines) {
+        ctx.fillText(l, x, curY);
+        curY += lineH;
+      }
+      return curY;
+    }
+
+    // ── Draw cross ───────────────────────────────────────
+    drawCross(W/2, 130, 2.2);
+
+    // ── Church name ──────────────────────────────────────
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 36px Georgia, serif';
+    ctx.fillText('Archangel Michael & St. Mena', W/2, 270);
+    ctx.font = '30px Georgia, serif';
+    ctx.fillText('Coptic Orthodox Church', W/2, 315);
+
+    ctx.fillStyle = 'rgba(245,200,66,0.8)';
+    ctx.font = '22px Arial, sans-serif';
+    ctx.fillText('Staten Island · New York', W/2, 360);
+
+    // ── Gold divider ─────────────────────────────────────
+    function goldLine(y) {
+      const gl = ctx.createLinearGradient(W*0.1, 0, W*0.9, 0);
+      gl.addColorStop(0,   'rgba(245,200,66,0)');
+      gl.addColorStop(0.5, 'rgba(245,200,66,0.6)');
+      gl.addColorStop(1,   'rgba(245,200,66,0)');
+      ctx.fillStyle = gl;
+      ctx.fillRect(W*0.1, y, W*0.8, 2);
+    }
+    goldLine(390);
+
+    // ── Verse of the Day label ───────────────────────────
+    ctx.fillStyle = '#f5c842';
+    ctx.font = 'bold 26px Arial, sans-serif';
+    ctx.letterSpacing = '4px';
+    ctx.fillText('✦  VERSE OF THE DAY  ·  آية اليوم  ✦', W/2, 440);
+    ctx.letterSpacing = '0px';
+
+    // ── Date ─────────────────────────────────────────────
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.font = '24px Arial, sans-serif';
+    ctx.fillText(formatDate(today), W/2, 490);
+
+    goldLine(520);
+
+    // ── Reference ───────────────────────────────────────
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 54px Georgia, serif';
+    ctx.fillText(ref, W/2, 600);
+
+    // ── Ornament ─────────────────────────────────────────
+    ctx.fillStyle = 'rgba(245,200,66,0.5)';
+    ctx.font = '28px Arial';
+    ctx.fillText('— ✦ —', W/2, 648);
+
+    // ── English verse ─────────────────────────────────────
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    ctx.font = 'italic 38px Georgia, serif';
+    const enBottom = wrapText(ctx, `"${en}"`, W/2, 760, W - 160, 58);
+
+    // ── Separator ────────────────────────────────────────
+    goldLine(enBottom + 20);
+    ctx.fillStyle = 'rgba(150,200,255,0.6)';
+    ctx.font = 'bold 22px Arial';
+    ctx.fillText('Arabic  ·  عربي', W/2, enBottom + 58);
+    goldLine(enBottom + 75);
+
+    // ── Arabic verse ──────────────────────────────────────
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.font = 'italic 38px "Amiri", "Traditional Arabic", serif';
+    ctx.direction = 'rtl';
+    wrapArabic(ctx, `"${ar}"`, W/2, enBottom + 180, W - 160, 62);
+    ctx.direction = 'ltr';
+
+    // ── Bottom label ──────────────────────────────────────
+    goldLine(H - 80);
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.font = '22px Arial';
+    ctx.fillText('NKJV / الكتاب المقدس  ·  Archangel Michael & St. Mena  ·  Staten Island, NY', W/2, H - 44);
+
+    // ── Download ─────────────────────────────────────────
+    const fileName = `verse-${ref.replace(/[:\s]/g, '-')}.png`;
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      btn.classList.remove('loading');
+      icon.textContent = '✓';
+      label.textContent = 'Saved!';
+      setTimeout(() => {
+        icon.textContent = '⬇';
+        label.textContent = 'Save Image';
+      }, 2500);
+    }, 'image/png');
+
+  } catch(e) {
+    console.error(e);
+    btn.classList.remove('loading');
+    icon.textContent = '⬇';
+    label.textContent = 'Save Image';
+    alert('Could not generate image. Please try on a different browser.');
+  }
+}
+</script>
+</body>
+</html>
