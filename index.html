@@ -731,89 +731,90 @@ async function downloadImage() {
   label.textContent = 'Generating...';
 
   try {
-    const W = 1080, H = 1440;
+    // ── Load the Coptic cross image first ─────────────────
+    const crossEl = document.querySelector('.hero-cross');
+    const crossLoaded = await new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = crossEl.src;
+    });
+
+    const W = 1080, H = 1520;
     const canvas = document.createElement('canvas');
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext('2d');
     ctx.textAlign = 'center';
 
-    // ── Helpers ──────────────────────────────────────────
-    function goldDivider(y, opacity = 0.5) {
+    // ── Helper: gold divider line ─────────────────────────
+    function goldLine(y) {
       const g = ctx.createLinearGradient(W*0.15, 0, W*0.85, 0);
-      g.addColorStop(0,   `rgba(212,146,10,0)`);
-      g.addColorStop(0.5, `rgba(212,146,10,${opacity})`);
-      g.addColorStop(1,   `rgba(212,146,10,0)`);
+      g.addColorStop(0,   'rgba(212,146,10,0)');
+      g.addColorStop(0.5, 'rgba(212,146,10,0.55)');
+      g.addColorStop(1,   'rgba(212,146,10,0)');
       ctx.fillStyle = g;
       ctx.fillRect(W*0.15, y, W*0.7, 2);
     }
 
-    function wrapLines(text, font, maxW) {
+    // ── Helper: wrap + draw LTR text, returns next Y ──────
+    function drawText(text, font, color, y, maxW, lineH) {
       ctx.font = font;
+      ctx.fillStyle = color;
       const words = text.split(' ');
       const lines = [];
       let line = '';
       for (const w of words) {
         const test = line ? line + ' ' + w : w;
-        if (ctx.measureText(test).width > maxW && line) {
-          lines.push(line); line = w;
-        } else line = test;
+        if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+        else line = test;
       }
       if (line) lines.push(line);
-      return lines;
-    }
-
-    function drawWrapped(text, font, color, startY, maxW, lineH) {
-      const lines = wrapLines(text, font, maxW);
-      ctx.font = font;
-      ctx.fillStyle = color;
-      let y = startY;
       for (const l of lines) { ctx.fillText(l, W/2, y); y += lineH; }
       return y;
     }
 
-    function drawWrappedRTL(text, font, color, startY, maxW, lineH) {
+    // ── Helper: wrap + draw RTL text, returns next Y ──────
+    function drawTextRTL(text, font, color, y, maxW, lineH) {
       ctx.font = font;
       const words = text.split(' ');
       const lines = [];
       let line = '';
       for (const w of words) {
         const test = line ? w + ' ' + line : w;
-        if (ctx.measureText(test).width > maxW && line) {
-          lines.push(line); line = w;
-        } else line = test;
+        if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+        else line = test;
       }
       if (line) lines.push(line);
-      ctx.font = font;
       ctx.fillStyle = color;
       ctx.direction = 'rtl';
-      let y = startY;
       for (const l of lines) { ctx.fillText(l, W/2, y); y += lineH; }
       ctx.direction = 'ltr';
       return y;
     }
 
-    // ── HERO SECTION (crimson, top ~42%) ─────────────────
-    const HERO_H = 610;
+    // ════════════════════════════════════════════════════
+    // HERO SECTION
+    // ════════════════════════════════════════════════════
+    const HERO_H = 560;
 
-    // Hero background gradient
+    // Gradient background
     const heroBg = ctx.createLinearGradient(0, 0, W, HERO_H);
-    heroBg.addColorStop(0,   '#8a1225');
-    heroBg.addColorStop(0.45,'#b81c34');
-    heroBg.addColorStop(1,   '#c8401a');
+    heroBg.addColorStop(0,    '#8a1225');
+    heroBg.addColorStop(0.45, '#b81c34');
+    heroBg.addColorStop(1,    '#c8401a');
     ctx.fillStyle = heroBg;
     ctx.fillRect(0, 0, W, HERO_H);
 
-    // Ray pattern on hero
+    // Subtle ray lines
     ctx.save();
-    ctx.globalAlpha = 0.04;
-    for (let i = 0; i < 18; i++) {
+    ctx.globalAlpha = 0.035;
+    for (let i = 0; i < 20; i++) {
+      const a = (i / 20) * Math.PI * 2;
       ctx.beginPath();
-      ctx.moveTo(W/2, HERO_H/2);
-      const a = (i / 18) * Math.PI * 2;
-      ctx.lineTo(W/2 + Math.cos(a)*900, HERO_H/2 + Math.sin(a)*900);
-      ctx.lineWidth = 40;
-      ctx.strokeStyle = '#fff';
-      ctx.stroke();
+      ctx.moveTo(W/2, HERO_H * 0.5);
+      ctx.lineTo(W/2 + Math.cos(a)*950, HERO_H * 0.5 + Math.sin(a)*950);
+      ctx.lineWidth = 38; ctx.strokeStyle = '#fff'; ctx.stroke();
     }
     ctx.restore();
 
@@ -822,117 +823,138 @@ async function downloadImage() {
     topBar.addColorStop(0,'rgba(245,200,66,0)');
     topBar.addColorStop(0.5,'rgba(245,200,66,0.9)');
     topBar.addColorStop(1,'rgba(245,200,66,0)');
-    ctx.fillStyle = topBar;
-    ctx.fillRect(0, 0, W, 5);
+    ctx.fillStyle = topBar; ctx.fillRect(0, 0, W, 5);
 
-    // ── Coptic cross image ────────────────────────────────
-    const crossImg = document.querySelector('.hero-cross');
-    const crossSize = 160;
-    const crossY = 48;
-    try {
-      ctx.drawImage(crossImg, W/2 - crossSize/2, crossY, crossSize, crossSize);
-    } catch(e) { /* skip if blocked */ }
+    // ── Coptic cross (actual image) ───────────────────────
+    const CROSS_SIZE = 170;
+    const CROSS_TOP  = 42;
+    if (crossLoaded) {
+      ctx.drawImage(crossLoaded, W/2 - CROSS_SIZE/2, CROSS_TOP, CROSS_SIZE, CROSS_SIZE);
+    }
 
-    // Church name
-    let hy = crossY + crossSize + 28;
+    // ── Church text — starts below cross ─────────────────
+    let hy = CROSS_TOP + CROSS_SIZE + 32;
+
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 46px Georgia, serif';
-    ctx.fillText('Archangel Michael & St. Mena', W/2, hy); hy += 52;
-    ctx.font = '38px Georgia, serif';
-    ctx.fillText('Coptic Orthodox Church', W/2, hy); hy += 44;
+    ctx.font = 'bold 44px Georgia, serif';
+    ctx.fillText('Archangel Michael & St. Mena', W/2, hy); hy += 50;
 
-    // Location
-    ctx.fillStyle = 'rgba(255,255,255,0.75)';
-    ctx.font = '26px Arial, sans-serif';
-    ctx.fillText('STATEN ISLAND  ·  NEW YORK', W/2, hy); hy += 46;
+    ctx.font = '34px Georgia, serif';
+    ctx.fillText('Coptic Orthodox Church', W/2, hy); hy += 42;
+
+    ctx.fillStyle = 'rgba(255,255,255,0.72)';
+    ctx.font = '24px Arial, sans-serif';
+    ctx.fillText('STATEN ISLAND  ·  NEW YORK', W/2, hy); hy += 44;
 
     // Youth Meeting badge
-    const badgeW = 380, badgeH = 52, badgeX = W/2 - badgeW/2, badgeY = hy;
-    const badgeBg = ctx.createLinearGradient(badgeX, 0, badgeX+badgeW, 0);
-    badgeBg.addColorStop(0, '#d4920a'); badgeBg.addColorStop(1, '#f5c842');
-    ctx.fillStyle = badgeBg;
-    ctx.beginPath(); ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 26); ctx.fill();
+    const BW = 370, BH = 50;
+    const bx = W/2 - BW/2;
+    const badgeGrad = ctx.createLinearGradient(bx, 0, bx+BW, 0);
+    badgeGrad.addColorStop(0, '#d4920a'); badgeGrad.addColorStop(1, '#f5c842');
+    ctx.fillStyle = badgeGrad;
+    ctx.beginPath(); ctx.roundRect(bx, hy, BW, BH, 25); ctx.fill();
     ctx.fillStyle = '#5a1800';
-    ctx.font = 'bold 24px Arial, sans-serif';
-    ctx.fillText('✦  YOUTH MEETING  ✦', W/2, badgeY + 34); hy += badgeH + 20;
+    ctx.font = 'bold 22px Arial, sans-serif';
+    ctx.fillText('✦  YOUTH MEETING  ✦', W/2, hy + 33); hy += BH + 18;
 
-    // Thursday line
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.font = '24px Arial, sans-serif';
-    ctx.fillText('Every Thursday at 8:00 PM', W/2, hy); hy += 36;
+    // Thursday
+    ctx.fillStyle = 'rgba(255,255,255,0.82)';
+    ctx.font = '22px Arial, sans-serif';
+    ctx.fillText('Every Thursday at 8:00 PM', W/2, hy);
 
-    // ── CARD SECTION (cream, bottom ~58%) ────────────────
-    const CARD_Y = HERO_H;
-
-    // Cream background
+    // ════════════════════════════════════════════════════
+    // CARD SECTION
+    // ════════════════════════════════════════════════════
     ctx.fillStyle = '#fff8f0';
-    ctx.fillRect(0, CARD_Y, W, H - CARD_Y);
+    ctx.fillRect(0, HERO_H, W, H - HERO_H);
 
-    // 3-color top accent line on card
-    const accentW = W / 3;
-    ctx.fillStyle = '#b81c34'; ctx.fillRect(0, CARD_Y, accentW, 5);
-    ctx.fillStyle = '#d4920a'; ctx.fillRect(accentW, CARD_Y, accentW, 5);
-    ctx.fillStyle = '#1a6fc4'; ctx.fillRect(accentW*2, CARD_Y, accentW, 5);
+    // 3-colour accent line
+    const aw = W / 3;
+    ctx.fillStyle = '#b81c34'; ctx.fillRect(0, HERO_H, aw, 5);
+    ctx.fillStyle = '#d4920a'; ctx.fillRect(aw, HERO_H, aw, 5);
+    ctx.fillStyle = '#1a6fc4'; ctx.fillRect(aw*2, HERO_H, aw, 5);
 
-    let cy = CARD_Y + 54;
+    let cy = HERO_H + 52;
 
     // "Verse of the Day" label
     ctx.fillStyle = '#b81c34';
-    ctx.font = 'bold 24px Arial, sans-serif';
-    ctx.fillText('✦  VERSE OF THE DAY  ·  آية اليوم  ✦', W/2, cy); cy += 44;
+    ctx.font = 'bold 22px Arial, sans-serif';
+    ctx.fillText('✦  VERSE OF THE DAY  ·  آية اليوم  ✦', W/2, cy); cy += 40;
 
     // Date chip
-    const chipW = 520, chipH = 48, chipX = W/2 - chipW/2;
-    const chipBg = ctx.createLinearGradient(chipX, 0, chipX+chipW, 0);
-    chipBg.addColorStop(0, '#b81c34'); chipBg.addColorStop(1, '#c8401a');
-    ctx.fillStyle = chipBg;
-    ctx.beginPath(); ctx.roundRect(chipX, cy, chipW, chipH, 24); ctx.fill();
+    const CW = 500, CH = 46, cx0 = W/2 - CW/2;
+    const chipG = ctx.createLinearGradient(cx0,0,cx0+CW,0);
+    chipG.addColorStop(0,'#b81c34'); chipG.addColorStop(1,'#c8401a');
+    ctx.fillStyle = chipG;
+    ctx.beginPath(); ctx.roundRect(cx0, cy, CW, CH, 23); ctx.fill();
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 22px Arial, sans-serif';
-    ctx.fillText(formatDate(today), W/2, cy + 32); cy += chipH + 36;
+    ctx.font = 'bold 21px Arial, sans-serif';
+    ctx.fillText(formatDate(today), W/2, cy + 31); cy += CH + 38;
 
     // English reference
     ctx.fillStyle = '#8a1225';
-    ctx.font = 'bold 52px Georgia, serif';
-    ctx.fillText(ref, W/2, cy); cy += 20;
+    ctx.font = 'bold 54px Georgia, serif';
+    ctx.fillText(ref, W/2, cy); cy += 16;
 
     // Ornament
-    goldDivider(cy, 0.4); cy += 14;
-    ctx.fillStyle = 'rgba(212,146,10,0.7)';
-    ctx.font = '28px Arial';
-    ctx.fillText('✦', W/2, cy + 14); cy += 36;
+    goldLine(cy); cy += 16;
+    ctx.fillStyle = 'rgba(212,146,10,0.75)';
+    ctx.font = '26px Arial';
+    ctx.fillText('✦', W/2, cy + 12); cy += 38;
 
     // English verse
-    cy = drawWrapped(`\u201C${en}\u201D`, 'italic 38px Georgia, serif',
-                     '#2a1408', cy, W - 180, 58) + 10;
+    cy = drawText(`\u201C${en}\u201D`, 'italic 37px Georgia, serif',
+                  '#2a1408', cy, W - 160, 56) + 28;
 
-    // Gold divider (no label)
-    goldDivider(cy, 0.45); cy += 38;
+    // Gold divider — NO label
+    goldLine(cy); cy += 40;
 
-    // Arabic reference
+    // Arabic reference — centered, styled
     ctx.fillStyle = '#8a1225';
-    ctx.font = 'bold 46px Arial, sans-serif';
-    ctx.fillText(toArabicRef(ref), W/2, cy); cy += 36;
+    ctx.font = 'bold 48px Georgia, serif';
+    ctx.fillText(toArabicRef(ref), W/2, cy); cy += 18;
+
+    // Small ornament under Arabic ref
+    goldLine(cy); cy += 16;
+    ctx.fillStyle = 'rgba(212,146,10,0.75)';
+    ctx.font = '24px Arial';
+    ctx.fillText('✦', W/2, cy + 10); cy += 36;
 
     // Arabic verse
-    cy = drawWrappedRTL(`\u201C${ar}\u201D`, '40px Arial, sans-serif',
-                        '#1a0a2e', cy, W - 180, 64) + 16;
+    cy = drawTextRTL(`\u201C${ar}\u201D`, '38px Arial, sans-serif',
+                     '#1a0a2e', cy, W - 160, 62) + 20;
 
-    // Bottom footer
-    goldDivider(H - 64, 0.3);
-    ctx.fillStyle = 'rgba(100,70,40,0.5)';
-    ctx.font = '20px Arial, sans-serif';
-    ctx.fillText('NKJV / الكتاب المقدس  ·  Archangel Michael & St. Mena  ·  Staten Island, NY', W/2, H - 30);
+    // Footer
+    goldLine(H - 58);
+    ctx.fillStyle = 'rgba(100,70,40,0.45)';
+    ctx.font = '19px Arial, sans-serif';
+    ctx.fillText('NKJV / الكتاب المقدس  ·  Archangel Michael & St. Mena  ·  Staten Island, NY', W/2, H - 26);
 
-    // ── Save ─────────────────────────────────────────────
+    // ── Save: share sheet on iOS → Save to Photos ────────
     const fileName = `verse-${ref.replace(/[:\s]/g, '-')}.png`;
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = fileName; a.click();
-      URL.revokeObjectURL(url);
-      btn.classList.remove('loading');
-      icon.textContent = '✓'; label.textContent = 'Saved!';
+    canvas.toBlob(async (blob) => {
+      const file = new File([blob], fileName, { type: 'image/png' });
+
+      // iOS: use share sheet so user can tap "Save Image" → Photos
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'Verse of the Day' });
+          btn.classList.remove('loading');
+          icon.textContent = '✓'; label.textContent = 'Shared!';
+        } catch(e) {
+          // User cancelled share — that's fine
+          btn.classList.remove('loading');
+          icon.textContent = '⬇'; label.textContent = 'Save Image';
+        }
+      } else {
+        // Fallback for desktop / Android
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = fileName; a.click();
+        URL.revokeObjectURL(url);
+        btn.classList.remove('loading');
+        icon.textContent = '✓'; label.textContent = 'Saved!';
+      }
       setTimeout(() => { icon.textContent = '⬇'; label.textContent = 'Save Image'; }, 2500);
     }, 'image/png');
 
